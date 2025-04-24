@@ -74,3 +74,4 @@ C:\Users\Stefan\source\repos\ModefyEcommerce\obj\Debug\net8.0\refint\ModefyEcomm
 C:\Users\Stefan\source\repos\ModefyEcommerce\obj\Debug\net8.0\ModefyEcommerce.pdb
 C:\Users\Stefan\source\repos\ModefyEcommerce\obj\Debug\net8.0\ModefyEcommerce.genruntimeconfig.cache
 C:\Users\Stefan\source\repos\ModefyEcommerce\obj\Debug\net8.0\ref\ModefyEcommerce.dll
+C:\Users\Stefan\source\repos\ModefyEcommerce\obj\Debug\net8.0\ModefyEcommerce.sourcelink.json
