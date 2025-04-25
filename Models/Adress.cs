@@ -18,7 +18,7 @@ namespace ModefyEcommerce.Models
 
         [Required]
         [StringLength(255)]
-        public string Line { get; set; }
+        public string Line1 { get; set; }
 
         [StringLength(255)]
         public string? Line2 { get; set; }

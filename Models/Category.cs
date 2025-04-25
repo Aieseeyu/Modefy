@@ -14,10 +14,10 @@ namespace ModefyEcommerce.Models
 
         [Required]
         [StringLength(50)]
-        public string Name { get; set; }
+        public string CategoryName { get; set; }
 
         [StringLength(255)]
-        public string? Description { get; set; }
+        public string? CategoryDescription { get; set; }
 
         // foreign key to parent Category
         public int? ParentCategoryId { get; set; }
@@ -29,8 +29,8 @@ namespace ModefyEcommerce.Models
         public Category(int categoryId, string name, string? description, int? parentCategoryId)
         {
             CategoryId = categoryId;
-            Name = name;
-            Description = description;
+            CategoryName = name;
+            CategoryDescription = description;
             ParentCategoryId = parentCategoryId;
         }
     }
