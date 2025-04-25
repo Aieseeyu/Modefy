@@ -62,7 +62,7 @@ namespace ModefyEcommerce.Repositories
                             {
                                 ProductImageId = Convert.ToInt32(reader["product_image_id"]),
                                 ProductId = Convert.ToInt32(reader["product_image_product_id"]),
-                                ImageUrl = reader["product_image_url"].ToString()
+                                Url = reader["product_image_url"].ToString()
                             };
                         }
                     }
@@ -84,7 +84,7 @@ namespace ModefyEcommerce.Repositories
                     SELECT CAST(SCOPE_IDENTITY() AS INT);", connection))
                 {
                     command.Parameters.Add("@productId", SqlDbType.Int).Value = image.ProductId;
-                    command.Parameters.Add("@url", SqlDbType.NVarChar, 255).Value = image.ImageUrl;
+                    command.Parameters.Add("@url", SqlDbType.NVarChar, 255).Value = image.Url;
 
                     object? result = command.ExecuteScalar();
 
@@ -113,7 +113,7 @@ namespace ModefyEcommerce.Repositories
                 {
                     command.Parameters.Add("@id", SqlDbType.Int).Value = image.ProductImageId;
                     command.Parameters.Add("@productId", SqlDbType.Int).Value = image.ProductId;
-                    command.Parameters.Add("@url", SqlDbType.NVarChar, 255).Value = image.ImageUrl;
+                    command.Parameters.Add("@url", SqlDbType.NVarChar, 255).Value = image.Url;
 
                     int rowsAffected = command.ExecuteNonQuery();
                     return rowsAffected > 0;

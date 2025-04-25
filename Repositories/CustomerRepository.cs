@@ -103,7 +103,7 @@ namespace ModefyEcommerce.Repositories
                     command.Parameters.Add("@phone", SqlDbType.NVarChar, 20).Value = customer.PhoneNumber;
                     command.Parameters.Add("@status", SqlDbType.NVarChar, 20).Value = customer.Status;
 
-                    object result = command.ExecuteScalar();
+                    object? result = command.ExecuteScalar();
 
                     if (result != null && result.ToString() != "")
                     {
