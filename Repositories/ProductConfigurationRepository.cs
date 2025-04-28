@@ -1,11 +1,12 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
 using ModefyEcommerce.Data;
+using ModefyEcommerce.Interfaces;
 using ModefyEcommerce.Models;
 
 namespace ModefyEcommerce.Repositories
 {
-    public class ProductConfigurationRepository
+    public class ProductConfigurationRepository: IRepository<ProductConfiguration>
     {
         private readonly SqlConnectionFactory _factory;
 

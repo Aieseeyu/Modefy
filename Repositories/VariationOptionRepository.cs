@@ -1,11 +1,12 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
 using ModefyEcommerce.Data;
+using ModefyEcommerce.Interfaces;
 using ModefyEcommerce.Models;
 
 namespace ModefyEcommerce.Repositories
 {
-    public class VariationOptionRepository
+    public class VariationOptionRepository : IRepository<VariationOption>
     {
         private readonly SqlConnectionFactory _factory;
 

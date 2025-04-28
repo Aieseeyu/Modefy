@@ -1,11 +1,12 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
 using ModefyEcommerce.Data;
+using ModefyEcommerce.Interfaces;
 using ModefyEcommerce.Models;
 
 namespace ModefyEcommerce.Repositories
 {
-    public class PurchaseItemRepository
+    public class PurchaseItemRepository : IRepository<PurchaseItem>
     {
         private readonly SqlConnectionFactory _factory;
 
@@ -32,7 +33,7 @@ namespace ModefyEcommerce.Repositories
                             {
                                 PurchaseItemId = Convert.ToInt32(reader["purchase_item_id"]),
                                 PurchaseId = Convert.ToInt32(reader["purchase_item_purchase_id"]),
-                                VariantId = Convert.ToInt32(reader["purchase_item_variant_id"]),
+                                ProductVariantId = Convert.ToInt32(reader["purchase_item_variant_id"]),
                                 Quantity = Convert.ToInt32(reader["purchase_item_quantity"]),
                                 UnitPrice = Convert.ToDecimal(reader["purchase_item_unit_price"]),
                                 ProductName = reader["purchase_item_product_name"].ToString(),
@@ -69,7 +70,7 @@ namespace ModefyEcommerce.Repositories
                             {
                                 PurchaseItemId = Convert.ToInt32(reader["purchase_item_id"]),
                                 PurchaseId = Convert.ToInt32(reader["purchase_item_purchase_id"]),
-                                VariantId = Convert.ToInt32(reader["purchase_item_variant_id"]),
+                                ProductVariantId = Convert.ToInt32(reader["purchase_item_variant_id"]),
                                 Quantity = Convert.ToInt32(reader["purchase_item_quantity"]),
                                 UnitPrice = Convert.ToDecimal(reader["purchase_item_unit_price"]),
                                 ProductName = reader["purchase_item_product_name"].ToString(),
@@ -110,7 +111,7 @@ namespace ModefyEcommerce.Repositories
                     SELECT CAST(SCOPE_IDENTITY() AS INT);", connection))
                 {
                     command.Parameters.Add("@purchaseId", SqlDbType.Int).Value = item.PurchaseId;
-                    command.Parameters.Add("@variantId", SqlDbType.Int).Value = item.VariantId;
+                    command.Parameters.Add("@variantId", SqlDbType.Int).Value = item.ProductVariantId;
                     command.Parameters.Add("@quantity", SqlDbType.Int).Value = item.Quantity;
                     command.Parameters.Add("@unitPrice", SqlDbType.Decimal).Value = item.UnitPrice;
                     command.Parameters.Add("@productName", SqlDbType.NVarChar, 100).Value = item.ProductName;
@@ -153,7 +154,7 @@ namespace ModefyEcommerce.Repositories
                 {
                     command.Parameters.Add("@id", SqlDbType.Int).Value = item.PurchaseItemId;
                     command.Parameters.Add("@purchaseId", SqlDbType.Int).Value = item.PurchaseId;
-                    command.Parameters.Add("@variantId", SqlDbType.Int).Value = item.VariantId;
+                    command.Parameters.Add("@variantId", SqlDbType.Int).Value = item.ProductVariantId;
                     command.Parameters.Add("@quantity", SqlDbType.Int).Value = item.Quantity;
                     command.Parameters.Add("@unitPrice", SqlDbType.Decimal).Value = item.UnitPrice;
                     command.Parameters.Add("@productName", SqlDbType.NVarChar, 100).Value = item.ProductName;

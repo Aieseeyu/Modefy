@@ -18,7 +18,7 @@ namespace ModefyEcommerce.Models
 
         // foreign key to ProductVariant
         [Required]
-        public int VariantId { get; set; }
+        public int ProductVariantId { get; set; }
 
         [Required]
         public int Quantity { get; set; }
