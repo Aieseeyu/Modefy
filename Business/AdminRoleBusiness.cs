@@ -3,33 +3,33 @@ using ModefyEcommerce.Repositories;
 
 namespace ModefyEcommerce.Business
 {
-    public class RefundBusiness
+    public class AdminRoleBusiness
     {
-        private readonly RefundRepository _repository;
+        private readonly AdminRoleRepository _repository;
 
-        public RefundBusiness(RefundRepository repository)
+        public AdminRoleBusiness(AdminRoleRepository repository)
         {
             _repository = repository;
         }
 
-        public List<Refund> GetAll()
+        public List<AdminRole> GetAll()
         {
             return _repository.GetAll();
         }
 
-        public Refund? GetById(int id)
+        public AdminRole? GetById(int id)
         {
             return _repository.GetById(id);
         }
 
-        public Refund? Create(Refund refund)
+        public AdminRole? Create(AdminRole role)
         {
-            return _repository.Add(refund);
+            return _repository.Add(role);
         }
 
-        public bool Update(Refund refund)
+        public bool Update(AdminRole role)
         {
-            return _repository.Update(refund);
+            return _repository.Update(role);
         }
 
         public bool Delete(int id)

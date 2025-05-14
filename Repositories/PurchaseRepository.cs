@@ -40,6 +40,7 @@ namespace ModefyEcommerce.Repositories
                                 TotalAmount = Convert.ToDecimal(reader["purchase_total_amount"]),
                                 ShippingAddress = reader["purchase_shipping_address"].ToString(),
                                 PaymentMethod = reader["purchase_payment_method"].ToString(),
+                                DeliveryTypeId = Convert.ToInt32(reader["purchase_delivery_type_id"]),
                                 StripeId = reader["purchase_stripe_id"] != DBNull.Value ? reader["purchase_stripe_id"].ToString() : null,
                                 PromotionId = reader["purchase_promotion_id"] != DBNull.Value ? Convert.ToInt32(reader["purchase_promotion_id"]) : (int?)null,
                                 PromotionCode = reader["purchase_promotion_code"] != DBNull.Value ? reader["purchase_promotion_code"].ToString() : null,
@@ -80,6 +81,7 @@ namespace ModefyEcommerce.Repositories
                                 TotalAmount = Convert.ToDecimal(reader["purchase_total_amount"]),
                                 ShippingAddress = reader["purchase_shipping_address"].ToString(),
                                 PaymentMethod = reader["purchase_payment_method"].ToString(),
+                                DeliveryTypeId = Convert.ToInt32(reader["purchase_delivery_type_id"]),
                                 StripeId = reader["purchase_stripe_id"] != DBNull.Value ? reader["purchase_stripe_id"].ToString() : null,
                                 PromotionId = reader["purchase_promotion_id"] != DBNull.Value ? Convert.ToInt32(reader["purchase_promotion_id"]) : (int?)null,
                                 PromotionCode = reader["purchase_promotion_code"] != DBNull.Value ? reader["purchase_promotion_code"].ToString() : null,
@@ -104,15 +106,15 @@ namespace ModefyEcommerce.Repositories
                         purchase_customer_id, purchase_date, purchase_customer_full_name,
                         purchase_billing_address, purchase_status, purchase_total_amount,
                         purchase_shipping_address, purchase_payment_method,
-                        purchase_stripe_id, purchase_promotion_id, purchase_promotion_code,
-                        purchase_discount_amount
+                        purchase_delivery_type_id, purchase_stripe_id, purchase_promotion_id,
+                        purchase_promotion_code, purchase_discount_amount
                     )
                     VALUES (
                         @customerId, @date, @fullName,
                         @billing, @status, @total,
                         @shipping, @payment,
-                        @stripe, @promoId, @promoCode,
-                        @discount
+                        @deliveryTypeId, @stripe, @promoId,
+                        @promoCode, @discount
                     );
                     SELECT CAST(SCOPE_IDENTITY() AS INT);", connection))
                 {
@@ -124,6 +126,7 @@ namespace ModefyEcommerce.Repositories
                     command.Parameters.Add("@total", SqlDbType.Decimal).Value = purchase.TotalAmount;
                     command.Parameters.Add("@shipping", SqlDbType.NVarChar, 255).Value = purchase.ShippingAddress;
                     command.Parameters.Add("@payment", SqlDbType.NVarChar, 50).Value = purchase.PaymentMethod;
+                    command.Parameters.Add("@deliveryTypeId", SqlDbType.Int).Value = purchase.DeliveryTypeId;
                     command.Parameters.Add("@stripe", SqlDbType.NVarChar, 100).Value = (object?)purchase.StripeId ?? DBNull.Value;
                     command.Parameters.Add("@promoId", SqlDbType.Int).Value = (object?)purchase.PromotionId ?? DBNull.Value;
                     command.Parameters.Add("@promoCode", SqlDbType.NVarChar, 30).Value = (object?)purchase.PromotionCode ?? DBNull.Value;
@@ -158,6 +161,7 @@ namespace ModefyEcommerce.Repositories
                         purchase_total_amount = @total,
                         purchase_shipping_address = @shipping,
                         purchase_payment_method = @payment,
+                        purchase_delivery_type_id = @deliveryTypeId,
                         purchase_stripe_id = @stripe,
                         purchase_promotion_id = @promoId,
                         purchase_promotion_code = @promoCode,
@@ -173,6 +177,7 @@ namespace ModefyEcommerce.Repositories
                     command.Parameters.Add("@total", SqlDbType.Decimal).Value = purchase.TotalAmount;
                     command.Parameters.Add("@shipping", SqlDbType.NVarChar, 255).Value = purchase.ShippingAddress;
                     command.Parameters.Add("@payment", SqlDbType.NVarChar, 50).Value = purchase.PaymentMethod;
+                    command.Parameters.Add("@deliveryTypeId", SqlDbType.Int).Value = purchase.DeliveryTypeId;
                     command.Parameters.Add("@stripe", SqlDbType.NVarChar, 100).Value = (object?)purchase.StripeId ?? DBNull.Value;
                     command.Parameters.Add("@promoId", SqlDbType.Int).Value = (object?)purchase.PromotionId ?? DBNull.Value;
                     command.Parameters.Add("@promoCode", SqlDbType.NVarChar, 30).Value = (object?)purchase.PromotionCode ?? DBNull.Value;

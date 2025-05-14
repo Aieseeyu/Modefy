@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
 namespace ModefyEcommerce.Models
@@ -42,6 +38,10 @@ namespace ModefyEcommerce.Models
         [StringLength(50)]
         public string PaymentMethod { get; set; }
 
+        // foreign key to DeliveryType
+        [Required]
+        public int DeliveryTypeId { get; set; }
+
         [StringLength(100)]
         public string? StripeId { get; set; }
 
@@ -57,7 +57,9 @@ namespace ModefyEcommerce.Models
         public Purchase() { }
 
         // full constructor
-        public Purchase(int purchaseId, int customerId, DateTime date, string customerFullName, string billingAddress, string status, decimal totalAmount, string shippingAddress, string paymentMethod, string? stripeId, int? promotionId, string? promotionCode, decimal discountAmount)
+        public Purchase(int purchaseId, int customerId, DateTime date, string customerFullName, string billingAddress, string status,
+                        decimal totalAmount, string shippingAddress, string paymentMethod, int deliveryTypeId,
+                        string? stripeId, int? promotionId, string? promotionCode, decimal discountAmount)
         {
             PurchaseId = purchaseId;
             CustomerId = customerId;
@@ -68,6 +70,7 @@ namespace ModefyEcommerce.Models
             TotalAmount = totalAmount;
             ShippingAddress = shippingAddress;
             PaymentMethod = paymentMethod;
+            DeliveryTypeId = deliveryTypeId;
             StripeId = stripeId;
             PromotionId = promotionId;
             PromotionCode = promotionCode;
@@ -75,4 +78,3 @@ namespace ModefyEcommerce.Models
         }
     }
 }
-

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7URY8Ps4+r4=",
+  "dgSpecHash": "KSHAxEeM2SE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Stefan\\source\\repos\\ModefyEcommerce\\ModefyEcommerce.csproj",
+  "projectFilePath": "C:\\Users\\Stefan\\Source\\Repos\\Modefy\\ModefyEcommerce.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Stefan\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Stefan\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

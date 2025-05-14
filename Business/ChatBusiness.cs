@@ -3,33 +3,33 @@ using ModefyEcommerce.Repositories;
 
 namespace ModefyEcommerce.Business
 {
-    public class RefundBusiness
+    public class ChatBusiness
     {
-        private readonly RefundRepository _repository;
+        private readonly ChatRepository _repository;
 
-        public RefundBusiness(RefundRepository repository)
+        public ChatBusiness(ChatRepository repository)
         {
             _repository = repository;
         }
 
-        public List<Refund> GetAll()
+        public List<Chat> GetAll()
         {
             return _repository.GetAll();
         }
 
-        public Refund? GetById(int id)
+        public Chat? GetById(int id)
         {
             return _repository.GetById(id);
         }
 
-        public Refund? Create(Refund refund)
+        public Chat? Create(Chat chat)
         {
-            return _repository.Add(refund);
+            return _repository.Add(chat);
         }
 
-        public bool Update(Refund refund)
+        public bool Update(Chat chat)
         {
-            return _repository.Update(refund);
+            return _repository.Update(chat);
         }
 
         public bool Delete(int id)
