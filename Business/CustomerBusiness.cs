@@ -36,5 +36,11 @@ namespace ModefyEcommerce.Business
         {
             return _repository.Delete(id);
         }
+
+        public Customer? GetCustomerByEmail(string email)
+        {
+            return _repository.GetByEmail(email);
+        }
+
     }
 }

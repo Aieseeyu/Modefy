@@ -31,7 +31,7 @@ namespace ModefyEcommerce.Repositories
                         {
                             AdminRole role = new AdminRole
                             {
-                                Id = Convert.ToInt32(reader["admin_role_id"]),
+                                AdminRoleId = Convert.ToInt32(reader["admin_role_id"]),
                                 Name = reader["admin_role_name"].ToString(),
                                 Permissions = reader["admin_role_permissions"].ToString()
                             };
@@ -61,7 +61,7 @@ namespace ModefyEcommerce.Repositories
                         {
                             return new AdminRole
                             {
-                                Id = Convert.ToInt32(reader["admin_role_id"]),
+                                AdminRoleId = Convert.ToInt32(reader["admin_role_id"]),
                                 Name = reader["admin_role_name"].ToString(),
                                 Permissions = reader["admin_role_permissions"].ToString()
                             };
@@ -116,7 +116,7 @@ namespace ModefyEcommerce.Repositories
                         admin_role_permissions = @permissions
                     WHERE admin_role_id = @id", connection))
                 {
-                    command.Parameters.Add("@id", SqlDbType.Int).Value = role.Id;
+                    command.Parameters.Add("@id", SqlDbType.Int).Value = role.AdminRoleId;
                     command.Parameters.Add("@name", SqlDbType.NVarChar, 50).Value = role.Name;
                     command.Parameters.Add("@permissions", SqlDbType.NVarChar).Value = role.Permissions;
 

@@ -31,7 +31,7 @@ namespace ModefyEcommerce.Repositories
                         {
                             AdminUser user = new AdminUser
                             {
-                                Id = Convert.ToInt32(reader["admin_user_id"]),
+                                AdminUserId = Convert.ToInt32(reader["admin_user_id"]),
                                 FirstName = reader["admin_user_first_name"].ToString(),
                                 LastName = reader["admin_user_last_name"].ToString(),
                                 Email = reader["admin_user_email"].ToString(),
@@ -64,7 +64,7 @@ namespace ModefyEcommerce.Repositories
                         {
                             return new AdminUser
                             {
-                                Id = Convert.ToInt32(reader["admin_user_id"]),
+                                AdminUserId = Convert.ToInt32(reader["admin_user_id"]),
                                 FirstName = reader["admin_user_first_name"].ToString(),
                                 LastName = reader["admin_user_last_name"].ToString(),
                                 Email = reader["admin_user_email"].ToString(),
@@ -130,7 +130,7 @@ namespace ModefyEcommerce.Repositories
                         admin_user_role_id = @roleId
                     WHERE admin_user_id = @id", connection))
                 {
-                    command.Parameters.Add("@id", SqlDbType.Int).Value = user.Id;
+                    command.Parameters.Add("@id", SqlDbType.Int).Value = user.AdminUserId;
                     command.Parameters.Add("@firstName", SqlDbType.NVarChar, 50).Value = user.FirstName;
                     command.Parameters.Add("@lastName", SqlDbType.NVarChar, 50).Value = user.LastName;
                     command.Parameters.Add("@email", SqlDbType.NVarChar, 100).Value = user.Email;

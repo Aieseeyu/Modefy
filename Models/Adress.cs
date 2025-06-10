@@ -47,7 +47,7 @@ namespace ModefyEcommerce.Models
         {
             AddressId = addressId;
             CustomerId = customerId;
-            Line = line;
+            Line1 = line;
             Line2 = line2;
             City = city;
             PostalCode = postalCode;

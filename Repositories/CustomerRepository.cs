@@ -164,5 +164,43 @@ namespace ModefyEcommerce.Repositories
                 }
             }
         }
+
+        // Ajout de la méthode GetByEmail dans CustomerRepository
+        public Customer? GetByEmail(string email)
+        {
+            using (SqlConnection connection = _factory.CreateConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SELECT * FROM Customer WHERE customer_email = @Email", connection))
+                {
+                    command.Parameters.Add("@Email", SqlDbType.NVarChar, 100).Value = email;
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Customer
+                            {
+                                CustomerId = Convert.ToInt32(reader["customer_id"]),
+                                FirstName = reader["customer_first_name"].ToString(),
+                                LastName = reader["customer_last_name"].ToString(),
+                                Sex = Convert.ToByte(reader["customer_sex"]),
+                                Email = reader["customer_email"].ToString(),
+                                Password = reader["customer_password"].ToString(),
+                                PhoneNumber = reader["customer_phone_number"].ToString(),
+                                CreatedAt = (DateTime)reader["customer_created_at"],
+                                Status = reader["customer_status"].ToString()
+                            };
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
     }
 }
+
+

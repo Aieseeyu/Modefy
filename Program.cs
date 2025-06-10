@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using ModefyEcommerce.Data;
 using ModefyEcommerce.Models;
 using ModefyEcommerce.Repositories;
+using Microsoft.Extensions.Configuration.UserSecrets;
+using ModefyEcommerce.Tools;
 
 namespace ModefyEcommerce
 {
@@ -16,6 +19,13 @@ namespace ModefyEcommerce
 
             // Ajoute les contrôleurs à l'application (pour les routes http api)
             builder.Services.AddControllers();
+
+
+
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
+
 
             // Ajoute CORS (Cross-Origin Resource Sharing) avec une politique permissive par défaut
             builder.Services.AddCors(options =>
@@ -30,6 +40,8 @@ namespace ModefyEcommerce
 
             // Enregistre la factory de connexion SQL avec un cycle de vie Scoped (une instance par requête)
             builder.Services.AddScoped<SqlConnectionFactory>();
+            builder.Services.AddSingleton<HashHelper>();
+
 
             // Enregistre le repository produit, aussi en Scoped
             //builder.Services.AddScoped<ProductRepository>();
@@ -40,6 +52,15 @@ namespace ModefyEcommerce
             // Active CORS dans le pipeline HTTP
             app.UseCors();
 
+
+
+
+                app.UseSwagger();
+                app.UseSwaggerUI();
+
+
+
+
             // Redirige automatiquement vers HTTPS si l'utilisateur accède en HTTP
             app.UseHttpsRedirection();
 
@@ -48,19 +69,6 @@ namespace ModefyEcommerce
 
             // Mappe automatiquement les routes des contrôleurs (ex : /api/products)
             app.MapControllers();
-
-            //using (IServiceScope scope = app.Services.CreateScope())
-            //{
-            //    IServiceProvider services = scope.ServiceProvider;
-
-            //    ProductRepository productRepository = services.GetRequiredService<ProductRepository>();
-            //    List<Product> products = productRepository.GetAll();
-
-            //    foreach (Product product in products)
-            //    {
-            //        Console.WriteLine($"Produit : {product.ProductName}");
-            //    }
-            //}
 
             // Démarre l'application
             app.Run();

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ModefyEcommerce")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+993e6e6382694278b3564ff9e0ede17a4619982b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+54fde0e55ac0f22f92b9b3c1726f36886ec69789")]
 [assembly: System.Reflection.AssemblyProductAttribute("ModefyEcommerce")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ModefyEcommerce")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
