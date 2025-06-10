@@ -6,7 +6,7 @@ using ModefyEcommerce.Data;
 using ModefyEcommerce.Models;
 using ModefyEcommerce.Repositories;
 using Microsoft.Extensions.Configuration.UserSecrets;
-using ModefyEcommerce.Tools;
+using ModefyEcommerce.Helpers;
 
 namespace ModefyEcommerce
 {

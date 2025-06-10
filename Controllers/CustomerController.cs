@@ -13,7 +13,7 @@ namespace ModefyEcommerce.Controllers
     [Route("api/[controller]")]
     public class CustomerController : ControllerBase
     {
-        private readonly CustomerBusiness _customerBusiness;
+        private readonly CustomerBusiness _customerBusiness ;
         private readonly IConfiguration _configuration;
         private readonly HashHelper _hashHelper;
 
@@ -24,16 +24,13 @@ namespace ModefyEcommerce.Controllers
             _hashHelper = hashHelper;
         }
 
-        // ✅ POST: api/customer/register
         [HttpPost("register")]
         public IActionResult Register([FromBody] Customer newCustomer)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var existing = _customerBusiness.GetCustomerByEmail(newCustomer.Email);
-            if (existing != null)
-                return Conflict("Email already in use.");
+            if (existing != null) return Conflict("Email already in use.");
 
             newCustomer.Password = _hashHelper.ComputeSha256Hash(newCustomer.Password);
             newCustomer.CreatedAt = DateTime.Now;
@@ -41,32 +38,27 @@ namespace ModefyEcommerce.Controllers
 
             var created = _customerBusiness.Create(newCustomer);
 
-            if (created == null)
-                return StatusCode(500, "Could not create customer.");
+            if (created == null) return StatusCode(500, "Could not create customer.");
 
             return Ok(created);
         }
 
-        // ✅ POST: api/customer/login
         [HttpPost("login")]
         public IActionResult Login([FromBody] Customer loginData)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            //if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var customer = _customerBusiness.GetCustomerByEmail(loginData.Email);
-            if (customer == null)
-                return Unauthorized("Invalid email or password.");
+
+            if (customer == null) return Unauthorized("Invalid email or password.");
 
             string hashedInput = _hashHelper.ComputeSha256Hash(loginData.Password);
-            if (customer.Password != hashedInput)
-                return Unauthorized("Invalid email or password.");
+            if (customer.Password != hashedInput) return Unauthorized("Invalid email or password.");
 
             string token = GenerateJwtToken(customer);
             return Ok(new { token });
         }
 
-        // 🔐 JWT Token generator
         private string GenerateJwtToken(Customer customer)
         {
             var claims = new[]

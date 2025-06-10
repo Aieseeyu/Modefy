@@ -1,1 +1,34 @@
-[]
+[
+  {
+    "ContainingType": "ModefyEcommerce.Controllers.CustomerController",
+    "Method": "Login",
+    "RelativePath": "api/Customer/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginData",
+        "Type": "ModefyEcommerce.Models.Customer",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ModefyEcommerce.Controllers.CustomerController",
+    "Method": "Register",
+    "RelativePath": "api/Customer/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newCustomer",
+        "Type": "ModefyEcommerce.Models.Customer",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

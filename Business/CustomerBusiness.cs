@@ -7,9 +7,9 @@ namespace ModefyEcommerce.Business
     {
         private readonly CustomerRepository _repository;
 
-        public CustomerBusiness(CustomerRepository repository)
+        public CustomerBusiness()
         {
-            _repository = repository;
+            _repository = new CustomerRepository();
         }
 
         public List<Customer> GetAll()
